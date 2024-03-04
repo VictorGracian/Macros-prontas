@@ -1,0 +1,49 @@
+Sub SelecionarArquivo()
+
+    Dim fDlg      As FileDialog
+    Dim lArquivo  As String
+    
+    Set fDlg = Application.FileDialog(FileDialogType:=msoFileDialogFilePicker)
+    
+    With fDlg
+        .AllowMultiSelect = False
+        
+        .InitialView = msoFileDialogViewDetails
+        
+        .Filters.Add "Excel", "*.xls", 1
+        
+        .InitialFileName = Parametros.Range("Local").Value
+    End With
+    
+    If fDlg.Show = -1 Then
+        lArquivo = fDlg.SelectedItems(1)
+        Parametros.Range("Local").Value = lArquivo
+    Else
+        MsgBox "Não foi Selecionado o Arquivo"
+    End If
+        
+End Sub
+
+
+Sub SelecionarPasta()
+
+    Dim fDlg      As FileDialog
+    Dim lArquivo  As String
+    
+    Set fDlg = Application.FileDialog(FileDialogType:=msoFileDialogFolderPicker)
+    
+    With fDlg
+    
+        
+        .InitialFileName = Parametros.Range("Local1").Value
+    End With
+    
+    If fDlg.Show = -1 Then
+        lArquivo = fDlg.SelectedItems(1)
+        Parametros.Range("Local1").Value = lArquivo
+    Else
+        MsgBox "Não foi Selecionado o Arquivo"
+    End If
+        
+End Sub
+

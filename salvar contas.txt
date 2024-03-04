@@ -1,0 +1,20 @@
+Sub cadastrar_contas()
+'
+' cadastrar_contas Macro
+''    
+    Range("I6").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Sheets("Contas").Select
+    Range("A2").Select
+    Selection.End(xlDown).Offset(1, 0).Select
+    ActiveSheet.Paste
+    Sheets("Parametros").Select
+    Range("K6").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.ClearContents
+    ActiveWorkbook.RefreshAll
+    MsgBox "Contas Cadastradas"
+End Sub
