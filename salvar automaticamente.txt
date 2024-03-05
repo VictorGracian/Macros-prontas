@@ -1,0 +1,33 @@
+Macros para salvar planilha automaticamente a cada 10 minutos:
+
+Sub SalvarAcada10Minutos()
+    ' Defina a quantidade de minutos entre os salvamentos
+    Dim Minutos As Double
+    Minutos = 10
+    
+    ' Defina o tempo para esperar em segundos
+    Dim Segundos As Double
+    Segundos = Minutos * 60
+    
+    ' Ativar temporizador
+    Application.OnTime Now + TimeValue("00:10:00"), "SalvarPlanilha"
+End Sub
+
+Sub SalvarPlanilha()
+    ' Salvar a planilha ativa
+    ThisWorkbook.Save
+    
+    ' Chamar a função novamente para salvar após 10 minutos
+    Call SalvarAcada10Minutos
+End Sub
+
+
+
+
+Codigo para iniciar as macros quando abrir a planilha:
+
+Private Sub Workbook_Open()
+    ' Ao abrir a planilha, iniciar a macro de salvar a cada 10 minutos
+    Call SalvarAcada10Minutos
+    Call SalvarPlanilha
+End Sub
